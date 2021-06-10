@@ -1,26 +1,34 @@
-// Случайное число в интервале (min, max)
-
-function getRandomNumber(min, max) {
-  if (min >= max || min < 0 || max < 0) {
+function getRandomIntegerNumber(min, max) {
+  const isTypeArguments  = typeof min === 'number' && typeof max === 'number';
+  if (!isTypeArguments) {
+    return 'Ошибка! Передаваемые аргументы должны быть числами.';
+  }
+  const isQuantityArguments  = min === undefined && max === undefined;
+  if (isQuantityArguments) {
+    return 'Ошибка! Нужно ввести два числа.';
+  }
+  const isWrongPeriod = min >= max || min < 0 || max < 0;
+  if (isWrongPeriod) {
     return 'Ошибка! Неверный диапазон.';
   }
-  const random = min + Math.random() * (max + 1 - min);
-  return Math.floor(random);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+getRandomIntegerNumber(1, 5);
 
-getRandomNumber(1, 5);
-//console.log(getRandomNumber(1, 5));
-
-// Случайное число с плавающей точкой
-
-// eslint-disable-next-line id-length
-function getRandomPoint(min, max, n) {
-  if (min >= max || min < 0 || max < 0) {
+function getRandomFloatingNumber(min, max, decimalPlaces) {
+  const isTypeArguments  = typeof min === 'number' && typeof max === 'number';
+  if (!isTypeArguments) {
+    return 'Ошибка! Передаваемые аргументы должны быть числами.';
+  }
+  const isQuantityArguments  = min === undefined && max === undefined;
+  if (isQuantityArguments) {
+    return 'Ошибка! Нужно ввести два числа.';
+  }
+  const isWrongPeriod = min >= max || min < 0 || max < 0;
+  if (isWrongPeriod) {
     return 'Ошибка! Неверный диапазон.';
   }
-  const random = (0 * (max - min) + min).toFixed(n);
-  return random;
+  const randomNumber = Math.random() * (max - min + 1) + min;
+  return +randomNumber.toFixed(decimalPlaces);
 }
-
-getRandomPoint(1, 5, 5);
-//console.log(getRandomPoint(1, 5, 5));
+getRandomFloatingNumber(1, 5, 5);
