@@ -37,8 +37,9 @@ function getRandomFloatingNumber(min, max, decimalPlaces) {
 getRandomFloatingNumber(1, 5, 5);
 
 //Не получилось разобраться с:
-//- тем, чтобы элементы массива не повторялись - avatar, features
-//-address
+//1- тем, чтобы элементы массива не повторялись - avatar, features
+//(пыталась использовать sort для перемешивания эл-в, а потом с помощью slice брать радномное количество с начала, но сложно);
+//2-address,должна получться строка из двух координат location?;
 
 const AVATAR = [
   'img/avatars/user01.png',
