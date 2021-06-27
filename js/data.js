@@ -25,7 +25,7 @@ const GUESTS_MAX = 8;
 
 
 const createAuthor = (index) => {
-  const avatar = `img/avatars/user${  String(index).padStart(2,'0')  }.png`;
+  const avatar = `../img/avatars/user${  String(index).padStart(2,'0')  }.png`;
   return avatar;
 };
 
