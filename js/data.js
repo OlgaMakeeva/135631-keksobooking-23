@@ -17,7 +17,6 @@ const LAT_MAX = 35.7;
 const LNG_MIN = 139.7;
 const LNG_MAX = 139.8;
 const LOCATION_DECIMAL_PLASES = 5;
-const ADS_COUNT = 10;
 const ROOMS_MIN = 1;
 const ROOMS_MAX = 4;
 const GUESTS_MIN = 1;
@@ -25,13 +24,13 @@ const GUESTS_MAX = 8;
 
 
 const createAuthor = (index) => {
-  const avatar = `../img/avatars/user${  String(index).padStart(2,'0')  }.png`;
-  return avatar;
+  const avatar = `img/avatars/user${  String(index).padStart(2,'0')  }.png`;
+  return { avatar };
 };
 
 const createOffer = (lat, lng) => ({
   title: TITLE,
-  address: {lat, lng},
+  address: `${lat}, ${lng}`,
   price: getRandomIntegerNumber(PRICE_MIN, PRICE_MAX),
   type: TYPES[getRandomIntegerNumber(0, TYPES.length - 1)],
   rooms: getRandomIntegerNumber(ROOMS_MIN, ROOMS_MAX),
@@ -57,7 +56,6 @@ const createAd = (index) => {
   return ad;
 };
 
-const similarAd = new Array(ADS_COUNT).fill(null).map((curentValue, index) => createAd(index));
-(similarAd);
+const createSimilarAds = (count) => new Array(count).fill(null).map((curentValue, index) => createAd(index));
 
-export {similarAd};
+export {createSimilarAds};
