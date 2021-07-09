@@ -3,12 +3,23 @@ const titleElement = document.querySelector('#title');
 const roomQuantity = document.querySelector('#room_number');
 const capacity = document.querySelector('#capacity');
 const capacityOptions = capacity.querySelectorAll('option');
+const houseTypeSelect = document.querySelector('#type');
+const timeinSelect = document.querySelector('#timein');
+const timeoutSelect = document.querySelector('#timeout');
 
-const minRentPrice = {
+const roomsQuantityToCapacity = {
   '1': ['1'],
   '2': ['2', '1'],
   '3': ['3', '2', '1'],
   '100': ['0'],
+};
+
+const typesDictionary = {
+  'flat': '1000',
+  'hotel': '3000',
+  'house': '5000',
+  'palace': '10000',
+  'bungalow': '0',
 };
 
 priceElement.addEventListener('invalid', () => {
@@ -38,7 +49,7 @@ titleElement.addEventListener('invalid', () => {
 });
 
 const onRoomQuantityChange = () => {
-  const availableCapacity = minRentPrice[roomQuantity.value];
+  const availableCapacity = roomsQuantityToCapacity[roomQuantity.value];
 
   const optionToSelect = availableCapacity[0];
 
@@ -59,3 +70,26 @@ const onRoomQuantityChange = () => {
 
 onRoomQuantityChange();
 roomQuantity.addEventListener('change', onRoomQuantityChange);
+
+const onHouseTypeChange = () => {
+  const currentType = houseTypeSelect.value;
+  const minPrice = typesDictionary[currentType];
+  priceElement.setAttribute('min', minPrice);
+  priceElement.setAttribute('placeholder', minPrice);
+};
+
+onHouseTypeChange();
+houseTypeSelect.addEventListener('change', onHouseTypeChange);
+
+const onTimeinSelectChange = () => {
+  timeoutSelect.value = timeinSelect.value;
+};
+
+const onTimeoutSelectChange = () => {
+  timeinSelect.value = timeoutSelect.value;
+};
+
+onTimeinSelectChange();
+onTimeoutSelectChange();
+timeinSelect.addEventListener('change', onTimeinSelectChange);
+timeoutSelect.addEventListener('change', onTimeoutSelectChange);
