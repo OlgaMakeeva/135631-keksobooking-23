@@ -4,8 +4,8 @@ const roomQuantity = document.querySelector('#room_number');
 const capacity = document.querySelector('#capacity');
 const capacityOptions = capacity.querySelectorAll('option');
 const houseTypeSelect = document.querySelector('#type');
-const timeinSelect = document.querySelector('#timein');
-const timeoutSelect = document.querySelector('#timeout');
+const timeInSelect = document.querySelector('#timein');
+const timeOutSelect = document.querySelector('#timeout');
 
 const roomsQuantityToCapacity = {
   '1': ['1'],
@@ -81,15 +81,15 @@ const onHouseTypeChange = () => {
 onHouseTypeChange();
 houseTypeSelect.addEventListener('change', onHouseTypeChange);
 
-const onTimeinSelectChange = () => {
-  timeoutSelect.value = timeinSelect.value;
+const onTimeInSelectChange = () => {
+  timeOutSelect.value = timeInSelect.value;
 };
 
-const onTimeoutSelectChange = () => {
-  timeinSelect.value = timeoutSelect.value;
+const onTimeOutSelectChange = () => {
+  timeInSelect.value = timeOutSelect.value;
 };
 
-onTimeinSelectChange();
-onTimeoutSelectChange();
-timeinSelect.addEventListener('change', onTimeinSelectChange);
-timeoutSelect.addEventListener('change', onTimeoutSelectChange);
+onTimeInSelectChange();
+onTimeOutSelectChange();
+timeInSelect.addEventListener('change', onTimeInSelectChange);
+timeOutSelect.addEventListener('change', onTimeOutSelectChange);
