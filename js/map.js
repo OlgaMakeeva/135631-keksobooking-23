@@ -1,6 +1,6 @@
 import { enableForm } from './form.js';
 import { enableFilters } from './filters.js';
-import {renderAds} from './card.js';
+import {renderAd} from './card.js';
 import {createSimilarAds} from './data.js';
 
 const addressInput = document.querySelector('#address');
@@ -68,9 +68,7 @@ const createPin = (data) => {
   );
   pin
     .addTo(map)
-    .bindPopup(
-      renderAds(rest),
-    );
+    .bindPopup(renderAd(rest));
 };
 
 offers.forEach((offer) => {
