@@ -1,5 +1,5 @@
-import { enableForm } from './form.js';
-import { enableFilters } from './filters.js';
+import { /*disableForm,*/ enableForm } from './form.js';
+import { /*disableFilters,*/ enableFilters } from './filters.js';
 import {renderAd} from './card.js';
 import {createSimilarAds} from './data.js';
 
@@ -13,6 +13,9 @@ const TOKYO = {
 const INITIAL_MAP = 10;
 const OFFERS_COUNT = 10;
 const valuesTokyo = Object.values(TOKYO).join(', ');
+
+/*disableForm();
+disableFilters();*/
 
 const map = L.map('map-canvas')
   .setView([TOKYO.lat, TOKYO.lng], INITIAL_MAP)
@@ -51,6 +54,18 @@ mainPin.on('drag', (evt) => {
 
 const offers = createSimilarAds(OFFERS_COUNT);
 
+const resetMap = () => {
+  addressInput.value = valuesTokyo;
+  mainPin.setLatLng({
+    lat: TOKYO.lat,
+    lng: TOKYO.lng,
+  });
+  map.setView({
+    lat: TOKYO.lat,
+    lng: TOKYO.lng,
+  }, 12);
+};
+
 const pinIcon = L.icon({
   iconUrl: '../img/pin.svg',
   iconSize: [40, 40],
@@ -74,3 +89,5 @@ const createPin = (data) => {
 offers.forEach((offer) => {
   createPin(offer);
 });
+
+export {resetMap};
