@@ -1,28 +1,26 @@
 import { /*disableForm,*/ enableForm } from './form.js';
 import { /*disableFilters,*/ enableFilters } from './filters.js';
 import {renderAd} from './card.js';
-import {createSimilarAds} from './data.js';
 
 const addressInput = document.querySelector('#address');
 
-const TOKYO = {
+const coordinatesPoint = {
   lat: 35.68950,
   lng: 139.69171,
 };
 
 const INITIAL_MAP = 10;
-const OFFERS_COUNT = 10;
-const valuesTokyo = Object.values(TOKYO).join(', ');
+const tokyoCoordinatesString = Object.values(coordinatesPoint).join(', ');
 
 /*disableForm();
 disableFilters();*/
 
 const map = L.map('map-canvas')
-  .setView([TOKYO.lat, TOKYO.lng], INITIAL_MAP)
+  .setView([coordinatesPoint.lat, coordinatesPoint.lng], INITIAL_MAP)
   .on('load', () => {
     enableForm();
     enableFilters();
-    addressInput.value = valuesTokyo;
+    addressInput.value = tokyoCoordinatesString;
   });
 
 L.tileLayer(
@@ -39,7 +37,7 @@ const mainPinIcon = L.icon({
 });
 
 const mainPin = L.marker(
-  TOKYO,
+  coordinatesPoint,
   {
     icon: mainPinIcon,
     draggable: true,
@@ -52,17 +50,15 @@ mainPin.on('drag', (evt) => {
   addressInput.value = `${lat.toFixed(5)} ${lng.toFixed(5)}`;
 });
 
-const offers = createSimilarAds(OFFERS_COUNT);
-
 const resetMap = () => {
-  addressInput.value = valuesTokyo;
+  addressInput.value = tokyoCoordinatesString;
   mainPin.setLatLng({
-    lat: TOKYO.lat,
-    lng: TOKYO.lng,
+    lat: coordinatesPoint.lat,
+    lng: coordinatesPoint.lng,
   });
   map.setView({
-    lat: TOKYO.lat,
-    lng: TOKYO.lng,
+    lat: coordinatesPoint.lat,
+    lng: coordinatesPoint.lng,
   }, 12);
 };
 
@@ -86,8 +82,12 @@ const createPin = (data) => {
     .bindPopup(renderAd(rest));
 };
 
-offers.forEach((offer) => {
-  createPin(offer);
-});
+fetch('https://23.javascript.pages.academy/keksobooking/data')
+  .then((response) => response.json())
+  .then((offers) => {
+    offers.forEach((offer) => {
+      createPin(offer);
+    });
+  });
 
 export {resetMap};

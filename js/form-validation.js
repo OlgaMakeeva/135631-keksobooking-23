@@ -1,12 +1,3 @@
-const priceElement = document.querySelector('#price');
-const titleElement = document.querySelector('#title');
-const roomQuantity = document.querySelector('#room_number');
-const capacity = document.querySelector('#capacity');
-const capacityOptions = capacity.querySelectorAll('option');
-const houseTypeSelect = document.querySelector('#type');
-const timeInSelect = document.querySelector('#timein');
-const timeOutSelect = document.querySelector('#timeout');
-
 const roomsQuantityToCapacity = {
   '1': ['1'],
   '2': ['2', '1'],
@@ -21,6 +12,15 @@ const typesDictionary = {
   'palace': '10000',
   'bungalow': '0',
 };
+
+const priceElement = document.querySelector('#price');
+const titleElement = document.querySelector('#title');
+const roomQuantity = document.querySelector('#room_number');
+const capacity = document.querySelector('#capacity');
+const capacityOptions = capacity.querySelectorAll('option');
+const houseTypeSelect = document.querySelector('#type');
+const timeInSelect = document.querySelector('#timein');
+const timeOutSelect = document.querySelector('#timeout');
 
 priceElement.addEventListener('invalid', () => {
   if (priceElement.validity.rangeUnderflow) {

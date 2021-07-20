@@ -11,21 +11,8 @@ const enableFilters = () => {
   Array.from(filterFormElements).forEach((element) => element.disabled = false);
 };
 
-const typeFilter = document.querySelector('#housing-type');
-const priceFilter = document.querySelector('#housing-price');
-const roomsFilter = document.querySelector('#housing-rooms');
-const guestsFilter = document.querySelector('#housing-guests');
-const mapCheckboxes = document.querySelectorAll('.map__checkbox');
-
 const resetFilters = () => {
-  typeFilter.value = 'any';
-  priceFilter.value = 'any';
-  roomsFilter.value = 'any';
-  guestsFilter.value = 'any';
-
-  mapCheckboxes.forEach((checkbox) => {
-    checkbox.checked = false;
-  });
+  mapFilterForm.reset();
 };
 
 export {disableFilters, enableFilters, resetFilters};
