@@ -1,4 +1,5 @@
 import {getRandomIntegerNumber, getRandomFloatingNumber} from './util.js';
+//import {getData} from './api.js';
 
 const TITLE = 'Заголовок объявления';
 const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
