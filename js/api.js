@@ -1,7 +1,7 @@
 import { showSuccessPopup, showErrorPopup  } from './results-popup.js';
 import { resetMap } from './map.js';
 import { resetForm } from './form.js';
-import { resetFilters } from './filters.js';
+import { resetFilters, filterOffers } from './filters.js';
 
 const adForm = document.querySelector('.ad-form');
 const clearFormButton = document.querySelector('.ad-form__reset');
@@ -22,6 +22,7 @@ adForm.addEventListener('submit', (evt) => {
         resetForm();
         resetMap();
         resetFilters();
+        filterOffers();
       } else {
         showErrorPopup();
       }

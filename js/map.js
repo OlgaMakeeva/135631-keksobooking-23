@@ -90,4 +90,4 @@ fetch('https://23.javascript.pages.academy/keksobooking/data')
     });
   });
 
-export {resetMap};
+export {resetMap, createPin};
