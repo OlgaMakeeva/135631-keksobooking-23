@@ -1,27 +1,25 @@
-import { /*disableForm,*/ enableForm } from './form.js';
-import { /*disableFilters,*/ enableFilters } from './filters.js';
+import { disableForm, enableForm } from './form.js';
+import { disableFilters, enableFilters } from './filters.js';
 import {renderAd} from './card.js';
-
-const addressInput = document.querySelector('#address');
 
 const coordinatesPoint = {
   lat: 35.68950,
   lng: 139.69171,
 };
-
 const INITIAL_MAP = 10;
+const addressInput = document.querySelector('#address');
 const tokyoCoordinatesString = Object.values(coordinatesPoint).join(', ');
 
-/*disableForm();
-disableFilters();*/
+disableForm();
+disableFilters();
 
 const map = L.map('map-canvas')
-  .setView([coordinatesPoint.lat, coordinatesPoint.lng], INITIAL_MAP)
   .on('load', () => {
     enableForm();
     enableFilters();
     addressInput.value = tokyoCoordinatesString;
-  });
+  })
+  .setView([coordinatesPoint.lat, coordinatesPoint.lng], INITIAL_MAP);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -67,6 +65,33 @@ const pinIcon = L.icon({
   iconSize: [40, 40],
   iconAnchor: [20, 0]},
 );
+/*
+let markers = [];
+const createPin = (array) => {
+  markers.forEach((marker) => {
+    marker.removeFrom(map);
+  });
+  markers = [];
+
+  const slicedArray = array.slice(0, INITIAL_MAP);
+
+  slicedArray.forEach((data) => {
+    const {location, ...rest} = data;
+    const pin = L.marker({
+      lat: lat,
+      lng: lng,
+    },
+    {
+      icon: pinIcon,
+      keepInView: true,
+    })
+      .bindPopup(renderAd(rest))
+      .addTo(map);
+
+    markers.push(pin);
+  });
+});*/
+
 
 const createPin = (data) => {
   const {location, ...rest} = data;

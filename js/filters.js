@@ -59,14 +59,14 @@ const filterOffers = ({offer}) => {
 };
 /*
 const onChange = (input) => {
-  input.addEventListener('change', debounce(filterOffers));
+  input.addEventListener('change', debounce(filterOffers, 500));
 };
 
-onChange(filterFormElements);
-onChange(typeFilter);
-onChange(roomsFilter);
-onChange(priceFilter);
-onChange(guestsFilter);
+onChange (filterFormElements);
+onChange (typeFilter);
+onChange (roomsFilter);
+onChange (priceFilter);
+onChange (guestsFilter);
 */
 const resetFilters = () => {
   mapFilterForm.reset();
